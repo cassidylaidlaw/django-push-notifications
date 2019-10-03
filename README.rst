@@ -1,6 +1,6 @@
 django-push-notifications
 =========================
-.. image:: https://api.travis-ci.org/jazzband/django-push-notifications.png
+.. image:: https://travis-ci.org/jazzband/django-push-notifications.svg?branch=master
 	:target: https://travis-ci.org/jazzband/django-push-notifications
 
 .. image:: https://jazzband.co/static/img/badge.svg
@@ -61,10 +61,15 @@ Edit your settings.py file:
 	}
 
 .. note::
+    If you need to support multiple mobile applications from a single Django application, see `Multiple Application Support <https://github.com/jazzband/django-push-notifications/wiki/Multiple-Application-Support>`_ for details.
+	
+.. note::
 	If you are planning on running your project with ``APNS_USE_SANDBOX=True``, then make sure you have set the
 	*development* certificate as your ``APNS_CERTIFICATE``. Otherwise the app will not be able to connect to the correct host. See settings_ for details.
 
-You can learn more about APNS certificates `here <https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html>`_.
+For more information about how to generate certificates, see `docs/APNS <https://github.com/jazzband/django-push-notifications/blob/master/docs/APNS.rst>`_.
+
+You can learn more about APNS certificates `here <https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html>`_.
 
 Native Django migrations are in use. ``manage.py migrate`` will install and migrate all models.
 
@@ -85,7 +90,7 @@ For WNS, you need both the ``WNS_PACKAGE_SECURITY_KEY`` and the ``WNS_SECRET_KEY
 
 **APNS settings**
 
-- ``APNS_CERTIFICATE``: Absolute path to your APNS certificate file. Certificates with passphrases are not supported.
+- ``APNS_CERTIFICATE``: Absolute path to your APNS certificate file. Certificates with passphrases are not supported. Read more about `Generation of an APNS PEM file <https://github.com/jazzband/django-push-notifications/blob/master/docs/APNS.rst>`_.
 - ``APNS_TOPIC``: The topic of the remote notification, which is typically the bundle ID for your app. If you omit this header and your APNs certificate does not specify multiple topics, the APNs server uses the certificate’s Subject as the default topic.
 - ``APNS_USE_ALTERNATIVE_PORT``: Use port 2197 for APNS, instead of default port 443.
 - ``APNS_USE_SANDBOX``: Use 'api.development.push.apple.com', instead of default host 'api.push.apple.com'.
